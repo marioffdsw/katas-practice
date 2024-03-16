@@ -45,4 +45,8 @@ describe("GIVEN calculateFizBuzz", () => {
     expect(() => { calculateFizzBuzz(-1) })
         .toThrow(new Error('Invalid Value'));
   });
+  test('GIVEN 102 SHOULD throw an "Invalid Value" Errors', () => {
+    expect(() => { calculateFizzBuzz(102) })
+        .toThrow(new Error('Invalid Value'));
+  });
 });
