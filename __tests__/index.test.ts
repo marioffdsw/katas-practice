@@ -21,4 +21,8 @@ describe("GIVEN calculateFizBuzz", () => {
     const result: string = calculateFizzBuzz(15);
     expect(result).toBe("FizzBuzz");
   });
+  test('GIVEN 6 SHOULD return "Fizz"', () => {
+    const result: string = calculateFizzBuzz(6);
+    expect(result).toBe("Fizz");
+  });
 });
