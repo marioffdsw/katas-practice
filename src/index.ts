@@ -1,6 +1,6 @@
 
 export function calculateFizzBuzz(num: number): string {
-  if(num == 0) throw new Error("Invalid Value");
+  if(num <= 0) throw new Error("Invalid Value");
   if(num == 101) throw new Error("Invalid Value");
   if(num % 3 == 0 && num % 5 == 0) return "FizzBuzz";
   if(num % 3 == 0) return "Fizz";
