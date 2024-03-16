@@ -33,4 +33,8 @@ describe("GIVEN calculateFizBuzz", () => {
     const result: string = calculateFizzBuzz(30);
     expect(result).toBe("FizzBuzz");
   });
+  test('GIVEN 0 SHOULD throw an "Invalid Value" Errors', () => {
+    expect(() => { calculateFizzBuzz(0) })
+        .toThrow(new Error('Invalid Value'));
+  });
 });
