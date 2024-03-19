@@ -137,6 +137,7 @@ dist
 # Serverless Webpack directories
 .webpack/
 .vscode/
+.idea
 .dist/
 
 # Optional stylelint cache
