@@ -40,4 +40,36 @@ describe("GIVEN a game", () => {
     expect(game.score).toBe(10);
   });
 
+  test("WHEN rolling a spare " +
+      "AND then roll a 3 " +
+      "AND all subsequent rolls are 0 " +
+      "THEN score should be 10", () => {
+    const game  = new Game();
+    game.roll(5);
+    game.roll(5);
+    game.roll(3);
+    for(let i = 1; i <= 17; i++) {
+      game.roll(0);
+    }
+    expect(game.score).toBe(16);
+  });
+
+  test("WHEN rolling a spare " +
+      "AND then roll a 3 " +
+      "AND all subsequent rolls are 0 " +
+      "THEN score should be 10", () => {
+    const game  = new Game();
+    game.roll(5);
+    game.roll(5);
+    game.roll(3);
+    game.roll(0);
+    game.roll(5);
+    game.roll(5);
+    game.roll(3);
+    game.roll(0);
+    for(let i = 1; i <= 12; i++) {
+      game.roll(0);
+    }
+    expect(game.score).toBe(32);
+  });
 });
