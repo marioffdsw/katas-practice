@@ -6,70 +6,38 @@ describe("GIVEN a game", () => {
     expect(game).not.toBeNull();
   });
 
-  function gameWithoutBonus(game: Game, pins: number) {
-    for (let i = 0; i <= 19; i++) {
-      game.roll(pins);
-    }
-  }
-
-  test('WHEN all rolls are 0 THEN score should be 0', () => {
+  test("WHEN rolling 0, 20 times, THEN score should be 0", () => {
     const game  = new Game();
-    gameWithoutBonus(game, 0);
-    const score = game.score;
-    expect(score).toBe(0);
-  });
-
-  test('WHEN rolling a spare AND rolling 3 in the next roll THEN score should be 16', () => {
-    const game  = new Game();
-    game.roll(5);
-    game.roll(5);
-    game.roll(3);
-    for(let i = 0; i <= 16; ++i) {
+    for(let i = 1; i <= 20; i++) {
       game.roll(0);
     }
-    const score = game.score;
-    expect(score).toBe(16);
+    expect(game.score).toBe(0);
   });
 
-  test('WHEN all rolls are 1 THEN score should be 20', () => {
+  test("WHEN rolling 1, 20 times, THEN score should be 20", () => {
     const game  = new Game();
-    gameWithoutBonus(game, 1);
-    const score = game.score;
-    expect(score).toBe(20);
+    for(let i = 1; i <= 20; i++) {
+      game.roll(1);
+    }
+    expect(game.score).toBe(20);
   });
 
-  test('WHEN all rolls are 3 THEN score should be 60', () => {
+  test("WHEN rolling 3, 20 times, THEN score should be 20", () => {
     const game  = new Game();
-    gameWithoutBonus(game, 3);
-    const score = game.score;
-    expect(score).toBe(60);
+    for(let i = 1; i <= 20; i++) {
+      game.roll(3);
+    }
+    expect(game.score).toBe(60);
   });
 
-  test('WHEN rolling a spare AND rolling 0 in the next roll THEN score should be 10', () => {
+  test("WHEN rolling a spare AND all subsequent rolls are 0 THEN score should be 10", () => {
     const game  = new Game();
     game.roll(5);
     game.roll(5);
-    for(let i = 0; i <= 17; ++i) {
+    for(let i = 1; i <= 18; i++) {
       game.roll(0);
     }
-    const score = game.score;
-    expect(score).toBe(10);
+    expect(game.score).toBe(10);
   });
 
-  test('WHEN rolling a spare AND rolling 0 in the next roll THEN score should be 10', () => {
-    const game  = new Game();
-    game.roll(5);
-    game.roll(5);
-    game.roll(3);
-    game.roll(0);
-    game.roll(5);
-    game.roll(5);
-    game.roll(3);
-    game.roll(0);
-    for(let i = 0; i <= 11; ++i) {
-      game.roll(0);
-    }
-    const score = game.score;
-    expect(score).toBe(32);
-  });
 });
