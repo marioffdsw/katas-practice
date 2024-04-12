@@ -1,33 +1,36 @@
 
 export class Game {
   score = 0;
+  rolls = 0;
   frameScore = 0;
-  frameRolls = 0;
+  isStrike = 0;
 
   roll(pins: number) {
-    this.score += pins;
-    this.frameScore += pins;
-    this.frameRolls++;
-
-    if(this.frameRolls == 3) {
-      if((this.frameScore - pins) == 10) {
+    if(this.rolls % 2 == 0) {
+      if(this.frameScore == 10) {
         this.score += pins;
       }
-      this.frameRolls = 1;
-      this.frameScore = pins;
+      this.frameScore = 0;
     }
+
+    this.frameScore += pins;
+    this.score += pins;
+    this.rolls++;
+
+    if(this.isStrike > 0 && this.rolls % 2 != 0) {
+      this.score += pins;
+      this.isStrike = 0;
+    }
+
+    this.isStrike--;
+    this.verifySkipTurn();
+    // console.log("score ", this.score, "frameScore ", this.frameScore, "rolls ", this.rolls, "isStrike ", this.isStrike)
   }
 
-  // roll(pins: number) {
-  //   if(this.rolls % 2 == 0) {
-  //     if(this.frameRolls == 10) {
-  //       this.score += pins;
-  //     }
-  //     this.frameRolls = 0;
-  //   }
-  //
-  //   this.frameRolls += pins;
-  //   this.score += pins;
-  //   this.rolls++;
-  // }
+  private verifySkipTurn() {
+    if (this.frameScore == 10 && (this.rolls - 1) % 2 == 0) {
+      this.rolls++;
+      this.isStrike = 2;
+    }
+  }
 }
